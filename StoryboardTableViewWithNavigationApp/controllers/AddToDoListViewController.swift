@@ -9,12 +9,12 @@ import UIKit
 
 class AddToDoListViewController: UIViewController {
     
-    weak var toDoListDelegate: ToDoListViewControllerDelegate?
+//    weak var toDoListDelegate: ToDoListViewControllerDelegate?
     
     @IBOutlet weak var todoListInput: UITextField!
     
     @IBAction func cancelToDoList(_ sender: Any) {
-        toDoListDelegate?.cancelToDoList?(self)
+//        toDoListDelegate?.cancelToDoList?(self)
         todoListInput.text = ""
         dismiss(animated: true)
     }
@@ -29,7 +29,10 @@ class AddToDoListViewController: UIViewController {
         guard let text = todoListInput.text else {
             return
         }
-        toDoListDelegate?.saveToDoList(self, text:text)
+//        toDoListDelegate?.saveToDoList(self, text:text)
+        let notifiaction = NotificationCenter.default
+        notifiaction.post(name: NSNotification.Name(NotificationName.addToDoList.rawValue), object: nil, userInfo: [NotificationUserInfo.toDo.rawValue: text])
+        
         todoListInput.text = ""
         dismiss(animated: true)
     }

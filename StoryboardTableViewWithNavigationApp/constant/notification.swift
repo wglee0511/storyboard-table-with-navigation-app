@@ -7,9 +7,10 @@
 
 import Foundation
 
-enum NotificationName: String {
-    case addToDoList = "addToDoList"
+extension Notification.Name {
+    static let addToDoList = Notification.Name("addToDoList")
 }
+
 
 enum NotificationUserInfo: String {
     case toDo = "toDo"

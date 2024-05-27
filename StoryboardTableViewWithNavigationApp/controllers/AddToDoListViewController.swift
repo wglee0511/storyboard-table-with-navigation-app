@@ -31,7 +31,7 @@ class AddToDoListViewController: UIViewController {
         }
 //        toDoListDelegate?.saveToDoList(self, text:text)
         let notifiaction = NotificationCenter.default
-        notifiaction.post(name: NSNotification.Name(NotificationName.addToDoList.rawValue), object: nil, userInfo: [NotificationUserInfo.toDo.rawValue: text])
+        notifiaction.post(name: .addToDoList, object: nil, userInfo: [NotificationUserInfo.toDo.rawValue: text])
         
         todoListInput.text = ""
         dismiss(animated: true)

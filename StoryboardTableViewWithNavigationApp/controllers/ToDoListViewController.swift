@@ -21,7 +21,7 @@ class ToDoListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(NotificationName.addToDoList.rawValue), object: nil, queue: .main) { noti in
+        NotificationCenter.default.addObserver(forName: .addToDoList, object: nil, queue: .main) { noti in
             guard let message = noti.userInfo?[NotificationUserInfo.toDo.rawValue] as? String else {
                 return
             }

@@ -15,7 +15,7 @@ class ToDoListViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination.children.first as? AddToDoListViewController {
-            viewController.todoListViewController = self
+            viewController.toDoListDelegate = self
         }
     }
 
@@ -25,6 +25,19 @@ class ToDoListViewController: UIViewController {
     }
 
 
+}
+
+extension ToDoListViewController: ToDoListViewControllerDelegate {
+    func saveToDoList(_ vc: UIViewController, text: String) {
+        toDoList.append(text)
+        toDoListTableView.reloadData()
+    }
+    
+    func cancelToDoList(_ vs: UIViewController) {
+        
+    }
+    
+    
 }
 
 extension ToDoListViewController: UITableViewDataSource {

@@ -9,11 +9,12 @@ import UIKit
 
 class AddToDoListViewController: UIViewController {
     
-    var todoListViewController: ToDoListViewController?
+    weak var toDoListDelegate: ToDoListViewControllerDelegate?
     
     @IBOutlet weak var todoListInput: UITextField!
     
     @IBAction func cancelToDoList(_ sender: Any) {
+        toDoListDelegate?.cancelToDoList?(self)
         todoListInput.text = ""
         dismiss(animated: true)
     }
@@ -25,11 +26,10 @@ class AddToDoListViewController: UIViewController {
 
     
     func saveData(){
-        guard todoListInput.text != nil else {
+        guard let text = todoListInput.text else {
             return
         }
-        todoListViewController?.toDoList.append(todoListInput.text ?? "")
-        todoListViewController?.toDoListTableView.reloadData()
+        toDoListDelegate?.saveToDoList(self, text:text)
         todoListInput.text = ""
         dismiss(animated: true)
     }
